@@ -37,7 +37,7 @@ const State = {
 };
 
 State.generateState("right", 0, 6, 2);
-State.generateState("left", 0, 7, 1);
+State.generateState("left", 0, 6, 3);
 
 
 function animate(state) {
@@ -65,7 +65,7 @@ function animate(state) {
 
 function keyboard(e) {
     if (e.keyCode == 68) {
-
+a = true;
 
 
         requestAnimationFrame(function() {
@@ -80,7 +80,8 @@ function keyboard(e) {
     }
 
     if (e.keyCode == 65) {
-        
+        a = true;
+
         requestAnimationFrame(function() {
 
             animate(State.getState("left"));
