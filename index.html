@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -19,37 +19,39 @@
 
 
     </header>
-    <main class="container"> 
-<div class=" border border-danger mt-5" id="narrator">
-  
+    <main class="container">
 
-<p><strong class="narrator">Narrator:</strong> Welcome ! </p>
-<p>Press <strong>"A"</strong> to move left , press <strong>"D"</strong> to move right.</p>
-
-</div>
+        <div id="menu">
 
 
-<canvas id="canvas" width="1110" height="420" class="border mt-5"></canvas>
-<div id="options" class="text-center">
-    <button type="button" class="btn btn-dark">option</button>
-    <button type="button" class="btn btn-dark">option</button>
-</div>
+            <div class="text-center name">
+                <h2> Jako&apos;s</h2>
+                <h2> Adventure</h2>
+            </div>
 
 
+            <div class="text-center" id="play">
+                <h1>PLAY</h1>
+            </div>
+        </div>
 
+     
+        <div id="game">
+            <div class=" border border-dark mt-5 text-dark" id="narrator">
+                <p><strong class="narrator">Narrator:</strong> Welcome ! </p>
+                <p>Press <strong>"A"</strong> to move left , press <strong>"D"</strong> to move right.</p>
+            </div>
+            <canvas id="canvas" width="1110" height="420" class="border mt-5"></canvas>
+            <div id="options" class="text-center">
+                <button type="button" class="btn btn-dark">Hi</button>
+                <button type="button" class="btn btn-dark">Ignore</button>
+            </div>
 
+        </div>
+    </main>
+    <footer>
 
-
-
-</main>
-    <footer></footer>
-
-
-
-
-
-
-
+    </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

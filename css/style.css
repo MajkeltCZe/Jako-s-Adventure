@@ -1,26 +1,72 @@
 body {
+/*background-image: url("../img/background.jpg");*/
+
 
 font-size:larger;
 
+}
 
+/*#game {
+  display: none;
+  
+  
+  }
+*/
+#menu {
 
-
+display: none;
 
 
 }
+
+
+.name > h2 {
+font-size: 80px;
+color: rgb(136, 4, 101);
+  text-shadow: 3px 4px 2px rgb(0, 0, 0) !important;
+}
+
+
+
+
+
+.name {
+    padding-top: 3%;
+
+}
+
+
+#play > h1 {
+
+font-size: 110px;
+padding-top: 9%;
+    
+color: rgb(136, 4, 101);
+  text-shadow: 3px 2px 2px rgb(0, 0, 0) !important;
+  cursor: pointer;
+}
+
+#play > h1:hover {
+  font-size: 120px;
+  color: rgb(87, 0, 64);
+  text-shadow: 5px 8px 2px rgb(0, 0, 0) !important;
+
+}
+
+
+
 
 #narrator {
 
 height: 150px;
 font-size: 20px;
 padding-left: 10px;
-
+background-image: linear-gradient(rgb(151, 151, 151), rgb(190, 190, 190));
 }
 
 .narrator {
 
 color: rgb(148, 4, 177);
-
 
 
 }
@@ -39,3 +85,4 @@ border: solid 1px blue;
 
 
 }
+
