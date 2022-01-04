@@ -1,47 +1,24 @@
 body {
-/*background-image: url("../img/background.jpg");*/
+background-image: url("../img/background.jpg");
 
 
 font-size:larger;
 
 }
 
-/*#game {
+#game {
   display: none;
   
   
   }
-*/
-#menu {
-
-display: none;
-
-
-}
-
-
-.name > h2 {
-font-size: 80px;
-color: rgb(136, 4, 101);
-  text-shadow: 3px 4px 2px rgb(0, 0, 0) !important;
-}
-
-
-
-
-
-.name {
-    padding-top: 3%;
-
-}
 
 
 #play > h1 {
 
 font-size: 110px;
-padding-top: 9%;
+padding-top: 40%;
     
-color: rgb(136, 4, 101);
+color: #880465;
   text-shadow: 3px 2px 2px rgb(0, 0, 0) !important;
   cursor: pointer;
 }
@@ -57,32 +34,40 @@ color: rgb(136, 4, 101);
 
 
 #narrator {
-
 height: 150px;
 font-size: 20px;
 padding-left: 10px;
-background-image: linear-gradient(rgb(151, 151, 151), rgb(190, 190, 190));
+background-image: linear-gradient(rgb(245, 221, 10), rgb(253, 249, 36));
+color: rgb(0, 0, 0);
+font-size: 22px;
+
 }
 
 .narrator {
 
-color: rgb(148, 4, 177);
+color: #880465;;
 
+}
+
+
+#options {
+margin-top: 20px;
+  margin-left: 18%;
 
 }
 
 .btn {
-
+color: black;
 width: 250px;
-height: 50px;
-
-margin-left: 50px;
-
+height: 80px;
+background-color:rgb(245, 221, 10 );
+margin-left: 7%;
+font-size: large;
 
 }
 .btn:hover {
-border: solid 1px blue;
-
-
+border: solid 2px rgb(0, 0, 0);
+background-color: rgb(253, 249, 36 );
+color: rgb(7, 6, 6);
 }
 
