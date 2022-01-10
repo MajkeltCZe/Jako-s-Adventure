@@ -6,7 +6,7 @@ const character = new Image();
 var background = new Image();
 const waveyMan = new Image();
 character.src = './img/test1.png';
-waveyMan.src = './img/waveman.png'
+waveyMan.src = './img/waveman.png';
 background.src = './img/background0.jpg';
 const play = document.getElementById('play');
 const game = document.getElementById('game');
@@ -15,14 +15,14 @@ const frameHeight = 140;
 
 var xPos = 20;
 var yPos = 280;
-var speed = 6;
+var speed = 10;
 let frameIndex = 0;
 let count = 0;
 var timer;
 let bg = 0;
 let playable;
 let story = 1;
-
+let state = [];
 
 
 
@@ -33,7 +33,9 @@ play.addEventListener('click', () => {
     document.body.style.backgroundImage = "url(./img/backgrounds.jpg)";
 
     ctx.drawImage(background, 0, 0);
-    ctx.drawImage(character, frameWidth, 4 * frameHeight, frameWidth, frameHeight, xPos, yPos, frameWidth, frameHeight);
+    
+ctx.drawImage(character,frameWidth , frameHeight * 4, frameWidth, frameHeight, xPos, yPos, frameWidth, frameHeight);
+
     Narration(1);
 
 });
@@ -50,10 +52,9 @@ function Narration(textIndex) {
         options.removeChild(options.firstChild)
     }
 
-    if (Object.keys(textNode.options).length === 0) {
-
-        playable = true;
-    }
+    if (Object.keys(textNode.options).length === 0) playable = true;
+    
+    
 
     else {
         playable = false;
@@ -72,8 +73,20 @@ function Narration(textIndex) {
 
 function selectOption(option) {
     const nextTextNodeId = option.nextText;
+
+    if (option.nextText == -1) {
+
+        gameover();
+    
+    }
     Narration(nextTextNodeId);
     playable = true;
+
+
+    state.push(state, option.state);
+
+
+
 
 }
 
@@ -86,11 +99,13 @@ const texts = [
         options: [
             {
                 text: 'Hi',
-                nextText: 2
+                nextText: 2,
+          state: "manners"
             },
             {
                 text: 'Ignore',
-                nextText: 3
+                nextText: 3,
+            state: "ignore"
             }
         ]
     },
@@ -119,7 +134,8 @@ const texts = [
         
             {
                 text: 'Yes',
-                nextText: 5
+                nextText: 5,
+                state: "backstory"
             },
             {
                 text: 'What, no.',
@@ -132,7 +148,7 @@ const texts = [
 
     {
         id: 5,
-        text: '<p><strong class="narrator">Narrator:</strong> You are Jako and you just wanted to live your life, but you are also adventurous so here is your adventure! </p>'
+        text: '<p><strong class="narrator">Narrator:</strong> You are Jako and you just want to live your life, but you are also adventurous so here is your adventure! </p>'
         , options: []
 
     },
@@ -153,11 +169,12 @@ const texts = [
             
             {
                 text: 'Wave at him',
-                nextText: 8
+                nextText: 8,
+                state: "waving"
             },
             {
                 text: 'Do nothing',
-                nextText: 9
+                nextText: -1,
             }
 
 
@@ -169,19 +186,21 @@ const texts = [
 
 
 
+   {
+        id: 8,
+        text: '<p><strong class="narrator">Narrator:</strong> You got a new friend !</p>'
+        , options: [
+        ]
 
+    },
+
+
+ 
 
 
 
 
 ]
-
-
-
-
-
-
-
 
 
 
@@ -204,6 +223,9 @@ function animate(startIndex, endIndex, row) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(background, 0, 0);
     ctx.drawImage(character, frameIndex * frameWidth, row * frameHeight, frameWidth, frameHeight, xPos, yPos, frameWidth, frameHeight);
+  if (bg == 1) {
+    ctx.drawImage(waveyMan,0, 0, frameWidth, frameHeight, 550,280 , frameWidth, frameHeight);
+  }
 
 
 }
@@ -231,6 +253,9 @@ document.addEventListener('keydown', keyboard);
 
 
 function keyboardPressed(e) {
+
+
+
 
     if (e.keyCode == 39 || e.keyCode == 37) {
 
@@ -322,9 +347,28 @@ Narration(7);
 }
 
 
+
+ // if ( state.includes('backstory') && story == 2) 
+
+  
+  
+
+
+
+
+
+
 }
 
 
 
+function gameover() {
 
+    canvas.style.display = "none";
+game.innerHTML = '<h2 class="text-center end mb-5"> THE END OF YOUR JOURNEY</h2> <p class="text-center end mt-5"> You died.</p>';
+document.body.style.backgroundImage = "url(./img/background3.jpg)";
 
+}
+
+    
+    

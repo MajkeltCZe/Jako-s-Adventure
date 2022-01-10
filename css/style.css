@@ -13,6 +13,14 @@ font-size:larger;
   }
 
 
+.end {
+  font-size: 110px;
+  color: #880465;
+  text-shadow: 3px 2px 2px rgb(0, 0, 0) !important;
+}
+
+
+
 #play > h1 {
 
 font-size: 110px;
@@ -21,6 +29,7 @@ padding-top: 40%;
 color: #880465;
   text-shadow: 3px 2px 2px rgb(0, 0, 0) !important;
   cursor: pointer;
+
 }
 
 #play > h1:hover {
