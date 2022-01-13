@@ -345,7 +345,7 @@ function Storytelling() {
 function gameover() {
 
     canvas.style.display = "none";
-    game.innerHTML = '<h2 class="text-center end mb-5"> THE END OF YOUR JOURNEY</h2> <p class="text-center end mt-5"> You died.</p>';
+    document.body.innerHTML = '<h2 class="text-center end mb-5"> THE END OF YOUR JOURNEY</h2> <p class="text-center end mt-5"> You died.</p>';
     document.body.style.backgroundImage = "url(./img/background3.jpg)";
 
 }
