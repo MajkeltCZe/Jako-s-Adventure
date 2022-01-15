@@ -1,8 +1,10 @@
 body {
-background-image: url("../img/background.jpg");
+  font-size:larger;
 
-
-font-size:larger;
+  background: url("../img/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
 
 }
 
@@ -12,7 +14,11 @@ font-size:larger;
   
   }
 
+#menu {
+margin-top: 40%;
 
+
+}
 
 .end {
   font-size: 110px;
@@ -26,12 +32,11 @@ margin-left: auto;
 .play > h1 {
 
 font-size: 110px;
-padding-top: 40%;
     
 color: #880465;
   text-shadow: 3px 2px 2px rgb(0, 0, 0) !important;
   cursor: pointer;
-
+  line-height: 120px;
 }
 
 .play > h1:hover {
@@ -41,9 +46,11 @@ color: #880465;
 
 }
 
+
+
 #language {
-margin-left: 0% !important;
-margin-top: 150px;
+margin-top: 7%;
+  margin-left:0% !important;
 font-size: larger;
 }
 
@@ -90,3 +97,60 @@ background-color: rgb(253, 249, 36 );
 color: rgb(7, 6, 6);
 }
 
+#controls {
+
+  display: none;
+  
+  }
+
+@media only screen and (max-width: 800px){
+  #controls {
+
+    display: none;
+    
+    }
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+body {
+
+  background: url("../img/bgmobile.png") no-repeat center center fixed;
+}
+
+#menu {
+margin-top: 60%;
+
+
+}
+canvas {
+height: 380px;
+width: 470px;
+
+}
+
+.btn {
+  width: 150px;
+  margin-left: 3% !important;
+
+font-size: 25px;
+}
+
+#controls {
+display: block;
+
+}
+
+#right,#left {
+width: 200px;
+margin-left: 25px !important;
+
+}
+
+
+
+
+
+}

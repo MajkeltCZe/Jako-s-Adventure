@@ -5,8 +5,10 @@ const options = document.getElementById('options');
 const play = document.getElementById('play');
 const language = document.getElementById('language');
 const menu = document.getElementById('menu');
+const right = document.getElementById('right');
+const left = document.getElementById('left');
 const frameWidth = 108, frameHeight = 140;
-let frameIndex = 0, count = 0, bg = 0, l = 'en';
+let frameIndex = 0, count = 0, bg = 0, l = 'en',moving = 0;
 let cutscene, playable = true, story = 1, timing, active = false;
 let state = [];
 let img = [];
@@ -29,6 +31,7 @@ class char {
     }
 
     animace(speedy, time) {
+        controls.style.display = "none";
         active = true;
         playable = false;
         let now = new Date().getTime();
@@ -85,6 +88,54 @@ language.addEventListener('click', () => {
 });
 
 
+right.addEventListener('mousedown',() => {
+
+moving = setInterval(() => {
+    moveRight();
+    ChangeBackground();
+    Storytelling();
+},40);
+
+
+
+});
+
+left.addEventListener('mousedown',() => {
+
+    moving = setInterval(() => {
+        moveLeft();
+        ChangeBackground();
+        Storytelling();
+    },40);
+    
+    
+    
+    });
+
+right.addEventListener('mouseup',() => {
+
+    clearInterval(moving);
+    stopMoving();
+    
+    
+    
+    });
+
+  
+        
+        
+        left.addEventListener('mouseup',() => {
+
+            clearInterval(moving);
+            stopMoving();
+            
+            
+            
+            });
+
+
+
+
 
 const Jako = {
     x: 20,
@@ -95,10 +146,7 @@ const Jako = {
 
         if ((e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 16)) {
             if (active == false) {
-                requestAnimationFrame(function () {
-                    animate(Jako.img, Jako.x, Jako.y, 0, 0, 4);
-
-                });
+            stopMoving();
             }
         }
 
@@ -108,26 +156,13 @@ const Jako = {
         console.log(bg);
         console.log(story);
         if (e.keyCode == 39 && playable == true) {
-
-            requestAnimationFrame(function () {
-                animate(Jako.img, Jako.x, Jako.y, 0, 4, 2);
-            });
-
-
-            (bg == 2 && Jako.x >= (canvas.width - 80)) ? Jako.x = Jako.x : Jako.x += Jako.speed;
+moveRight();
+    
         }
 
         if (e.keyCode == 37 && playable == true) {
-
-            requestAnimationFrame(function () {
-
-                animate(Jako.img, Jako.x, Jako.y, 0, 4, 3);
-            });
-            (bg == 0 && Jako.x <= 10) ? Jako.x = Jako.x : Jako.x -= Jako.speed;
-
-
+moveLeft();
         }
-
 
 
         if (e.keyCode == 16 && playable == true) {
@@ -139,17 +174,41 @@ const Jako = {
 
 
         }
-
-
-
-
         ChangeBackground();
         Storytelling();
-
     }
 }
 document.addEventListener('keydown', Jako.keyboard);
 document.addEventListener('keyup', Jako.keyboardPressed);
+
+
+function moveRight() {
+    requestAnimationFrame(function () {
+        animate(Jako.img, Jako.x, Jako.y, 0, 4, 2);
+    });
+
+
+    (bg == 2 && Jako.x >= (canvas.width - 80)) ? Jako.x = Jako.x : Jako.x += Jako.speed;
+
+}
+
+
+function moveLeft() {
+    requestAnimationFrame(function () {
+
+        animate(Jako.img, Jako.x, Jako.y, 0, 4, 3);
+    });
+    (bg == 0 && Jako.x <= 10) ? Jako.x = Jako.x : Jako.x -= Jako.speed;
+
+}
+
+function stopMoving () {
+    requestAnimationFrame(function () {
+        animate(Jako.img, Jako.x, Jako.y, 0, 0, 4);
+
+    });
+
+}
 
 
 
@@ -160,9 +219,19 @@ function Narration(textIndex) {
     while (options.firstChild) {
         options.removeChild(options.firstChild)
     }
-    (Object.keys(textNode.options).length === 0) ? playable = true : playable = false;
+   if (Object.keys(textNode.options).length === 0) {
+       playable = true ;
+       controls.style.display = "block";
+    
+    }
+    
+    else {playable = false;
+controls.style.display = "none";
+clearInterval(moving);
+stopMoving();
 
 
+}
 
 
     textNode.options.forEach(option => {
@@ -220,16 +289,12 @@ function selectOption(option) {
     }
 
 
-
-
     else {
         Narration(nextTextNodeId);
         playable = true;
 
     }
     
-
-
     Storytelling();
 }
 
@@ -750,8 +815,9 @@ function gameover(narration) {
     Narration(narration);
     menu.style.display = "none";
     canvas.style.display = "none";
+    controls.style.display = "none";
     state.includes('win') ? document.body.style.backgroundImage = "url(./img/win.jpg)" : document.body.style.backgroundImage = "url(./img/lose.jpg)";
-
+    
 }
 
 
