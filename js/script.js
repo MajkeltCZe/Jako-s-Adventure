@@ -221,7 +221,7 @@ function Narration(textIndex) {
     }
    if (Object.keys(textNode.options).length === 0) {
        playable = true ;
-       controls.style.display = "block";
+       window.matchMedia("(max-width: 600px)") ?   controls.style.display = "block" : ontrols.style.display = "none";
     
     }
     
