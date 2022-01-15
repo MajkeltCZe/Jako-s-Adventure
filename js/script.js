@@ -7,6 +7,7 @@ const language = document.getElementById('language');
 const menu = document.getElementById('menu');
 const right = document.getElementById('right');
 const left = document.getElementById('left');
+let media = window.matchMedia("(max-width: 600px)");
 const frameWidth = 108, frameHeight = 140;
 let frameIndex = 0, count = 0, bg = 0, l = 'en',moving = 0;
 let cutscene, playable = true, story = 1, timing, active = false;
@@ -220,12 +221,16 @@ function Narration(textIndex) {
         options.removeChild(options.firstChild)
     }
    if (Object.keys(textNode.options).length === 0) {
-       playable = true ;
-       window.matchMedia("(max-width: 600px)") ?   controls.style.display = "block" : ontrols.style.display = "none";
+       playable = true;
+       if (media.matches) { 
+        controls.style.display = "block";
+
+       }   
     
     }
     
-    else {playable = false;
+    else {
+        playable = false;
 controls.style.display = "none";
 clearInterval(moving);
 stopMoving();
@@ -349,7 +354,7 @@ const texts = [
             },
             {
                 text: 'What, no.',
-                textcs: 'Em, ne.',
+                textcs: 'Ehm, ne.',
                 nextText: 6
             }
         ]
@@ -819,6 +824,9 @@ function gameover(narration) {
     state.includes('win') ? document.body.style.backgroundImage = "url(./img/win.jpg)" : document.body.style.backgroundImage = "url(./img/lose.jpg)";
     
 }
+
+
+
 
 
 

@@ -154,3 +154,60 @@ margin-left: 25px !important;
 
 
 }
+
+@media only screen and (min-width: 800px) {
+
+  #controls {
+    display: block;
+    
+    }
+
+}
+
+
+
+@media only screen and (max-width: 480px) {
+  body {
+  
+    background: url("../img/bgmobile.png") no-repeat center center fixed;
+  }
+  
+  #menu {
+  margin-top: 60%;
+  
+  
+  }
+  canvas {
+  height: 280px;
+  width: 350px;
+  
+  }
+  
+  .btn {
+    width: 100px;
+    margin-left: 3% !important;
+  
+  font-size: 25px;
+  }
+  
+  #controls {
+  display: block;
+  
+  }
+  
+  #right,#left {
+  width: 150px;
+  margin-left: 25px !important;
+  
+  }
+  
+  .play > h1 {
+font-size: 80px !important;
+
+}  
+.play > h1:hover {
+  font-size: 100px !important;
+  
+  }  
+  
+  }
