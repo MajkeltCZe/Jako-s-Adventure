@@ -51,10 +51,6 @@ class char {
             }
 
         }, speedy);
-
-
-
-
     }
 
 }
@@ -89,49 +85,51 @@ language.addEventListener('click', () => {
 });
 
 
-right.addEventListener('mousedown',() => {
+right.addEventListener('pointerdown',() => {
 
 moving = setInterval(() => {
     moveRight();
     ChangeBackground();
     Storytelling();
-},40);
+},30);
 
 
 
 });
 
-left.addEventListener('mousedown',() => {
+left.addEventListener('pointerdown',() => {
 
     moving = setInterval(() => {
         moveLeft();
         ChangeBackground();
         Storytelling();
-    },40);
+    },30);
     
+    if (state.includes('boom')) {
+        
+        moving = setInterval(() => {
+            shift();
+            ChangeBackground();
+            Storytelling();
+        },30);    
+
     
+    }
     
     });
 
-right.addEventListener('mouseup',() => {
+right.addEventListener('pointerup',() => {
 
     clearInterval(moving);
     stopMoving();
     
-    
-    
     });
 
-  
-        
-        
-        left.addEventListener('mouseup',() => {
+
+        left.addEventListener('pointerup',() => {
 
             clearInterval(moving);
             stopMoving();
-            
-            
-            
             });
 
 
@@ -143,7 +141,7 @@ const Jako = {
     y: 280,
     speed: 5,
     img: 5,
-    keyboardPressed: function (e) {
+   keyboardPressed: function (e) {
 
         if ((e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 16)) {
             if (active == false) {
@@ -153,9 +151,8 @@ const Jako = {
 
     },
 
-    keyboard: function (e) {
-        console.log(bg);
-        console.log(story);
+   keyboard: function (e) {
+
         if (e.keyCode == 39 && playable == true) {
 moveRight();
     
@@ -167,17 +164,13 @@ moveLeft();
 
 
         if (e.keyCode == 16 && playable == true) {
-            requestAnimationFrame(function () {
-
-                animate(Jako.img, Jako.x, Jako.y, 0, 7, 1);
-            });
-            (bg == 0 && Jako.x <= 10) ? Jako.x = Jako.x : Jako.x -= (Jako.speed * 2);
-
-
+           shift();
         }
+        if (active == false) {
         ChangeBackground();
         Storytelling();
-    }
+        } 
+   }
 }
 document.addEventListener('keydown', Jako.keyboard);
 document.addEventListener('keyup', Jako.keyboardPressed);
@@ -211,6 +204,14 @@ function stopMoving () {
 
 }
 
+function shift() {
+    requestAnimationFrame(function () {
+
+        animate(Jako.img, Jako.x, Jako.y, 0, 7, 1);
+    });
+    (bg == 0 && Jako.x <= 10) ? Jako.x = Jako.x : Jako.x -= (Jako.speed * 2);
+
+}
 
 
 function Narration(textIndex) {
@@ -730,6 +731,7 @@ function Storytelling() {
 
 
     if (story == 6 && bg == 2 && state.includes('boom')) {
+        left.innerHTML = 'shift';
         // cutscene = new char(4,950,280,0, 6, 1);
         // cutscene.animace(100,2500);
         timing = setTimeout(() => {

@@ -109,7 +109,15 @@ color: rgb(7, 6, 6);
     display: none;
     
     }
-}
+
+    canvas {
+      height: 420px;
+      width: 400px;
+      
+      }
+
+
+  }
 
 
 
@@ -160,7 +168,7 @@ margin-left: 20px !important;
 @media only screen and (max-width: 480px) {
   body {
   
-    background: url("../img/bgmobile.png") no-repeat center center fixed;
+    background: url("../img/bgmobile.png") no-repeat;
   }
   
   #menu {
