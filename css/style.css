@@ -132,7 +132,7 @@ width: 470px;
 }
 
 .btn {
-  width: 150px;
+  width: 100px;
   margin-left: 3% !important;
 
 font-size: 25px;
@@ -144,23 +144,14 @@ display: block;
 }
 
 #right,#left {
-width: 200px;
-margin-left: 25px !important;
+width: 100px;
+margin-left: 20px !important;
 
 }
 
 
 
 
-
-}
-
-@media only screen and (min-width: 800px) {
-
-  #controls {
-    display: block;
-    
-    }
 
 }
 
