@@ -9,7 +9,7 @@ const right = document.getElementById('right');
 const left = document.getElementById('left');
 let media = window.matchMedia("(max-width: 600px)");
 const frameWidth = 108, frameHeight = 140;
-let frameIndex = 0, count = 0, bg = 0, l = 'en',moving = 0;
+let frameIndex = 0, count = 0, bg = 0, l = 'en', moving = 0;
 let cutscene, playable = true, story = 1, timing, active = false;
 let state = [];
 let img = [];
@@ -85,52 +85,52 @@ language.addEventListener('click', () => {
 });
 
 
-right.addEventListener('pointerdown',() => {
+right.addEventListener('pointerdown', () => {
 
-moving = setInterval(() => {
-    moveRight();
-    ChangeBackground();
-    Storytelling();
-},30);
+    moving = setInterval(() => {
+        moveRight();
+        ChangeBackground();
+        Storytelling();
+    }, 30);
 
 
 
 });
 
-left.addEventListener('pointerdown',() => {
+left.addEventListener('pointerdown', () => {
 
     moving = setInterval(() => {
         moveLeft();
         ChangeBackground();
         Storytelling();
-    },30);
-    
+    }, 30);
+
     if (state.includes('boom')) {
-        
+
         moving = setInterval(() => {
             shift();
             ChangeBackground();
             Storytelling();
-        },30);    
+        }, 30);
 
-    
+
     }
-    
-    });
 
-right.addEventListener('pointerup',() => {
+});
+
+right.addEventListener('pointerup', () => {
 
     clearInterval(moving);
     stopMoving();
-    
-    });
+
+});
 
 
-        left.addEventListener('pointerup',() => {
+left.addEventListener('pointerup', () => {
 
-            clearInterval(moving);
-            stopMoving();
-            });
+    clearInterval(moving);
+    stopMoving();
+});
 
 
 
@@ -141,36 +141,36 @@ const Jako = {
     y: 280,
     speed: 5,
     img: 5,
-   keyboardPressed: function (e) {
+    keyboardPressed: function (e) {
 
         if ((e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 16)) {
             if (active == false) {
-            stopMoving();
+                stopMoving();
             }
         }
 
     },
 
-   keyboard: function (e) {
+    keyboard: function (e) {
 
         if (e.keyCode == 39 && playable == true) {
-moveRight();
-    
+            moveRight();
+
         }
 
         if (e.keyCode == 37 && playable == true) {
-moveLeft();
+            moveLeft();
         }
 
 
         if (e.keyCode == 16 && playable == true) {
-           shift();
+            shift();
         }
         if (active == false) {
-        ChangeBackground();
-        Storytelling();
-        } 
-   }
+            ChangeBackground();
+            Storytelling();
+        }
+    }
 }
 document.addEventListener('keydown', Jako.keyboard);
 document.addEventListener('keyup', Jako.keyboardPressed);
@@ -196,7 +196,7 @@ function moveLeft() {
 
 }
 
-function stopMoving () {
+function stopMoving() {
     requestAnimationFrame(function () {
         animate(Jako.img, Jako.x, Jako.y, 0, 0, 4);
 
@@ -221,23 +221,23 @@ function Narration(textIndex) {
     while (options.firstChild) {
         options.removeChild(options.firstChild)
     }
-   if (Object.keys(textNode.options).length === 0) {
-       playable = true;
-       if (media.matches) { 
-        controls.style.display = "block";
+    if (Object.keys(textNode.options).length === 0) {
+        playable = true;
+        if (media.matches) {
+            controls.style.display = "block";
 
-       }   
-    
+        }
+
     }
-    
+
     else {
         playable = false;
-controls.style.display = "none";
-clearInterval(moving);
-stopMoving();
+        controls.style.display = "none";
+        clearInterval(moving);
+        stopMoving();
 
 
-}
+    }
 
 
     textNode.options.forEach(option => {
@@ -300,7 +300,7 @@ function selectOption(option) {
         playable = true;
 
     }
-    
+
     Storytelling();
 }
 
@@ -434,7 +434,7 @@ const texts = [
     {
         id: 11,
         text: '<p><strong class="pablo">Pablo:</strong> Great ! Btw, you will find something if you go to the right.</p>',
-        textcs: '<p><strong class="pablo">Pablo:</strong> Super ! Mimochodom, když půjdeŠ do prava asi tam měco najdeš.</p>'
+        textcs: '<p><strong class="pablo">Pablo:</strong> Super ! Mimochodom, když půjdeš do prava asi tam něco najdeš.</p>'
         , options: [
         ]
     },
@@ -487,8 +487,8 @@ const texts = [
 
     {
         id: 16,
-        text: '<p><strong class="pablo">Pablo:</strong> You found something there ? Oh. shoot I hoped they would left some diamonds but it is just a dynamite. It is good you did not touch it. Do you want to defuse it ?</p>',
-        textcs: '<p><strong class="pablo">Pablo:</strong> Něcos našel ? Oh krci, doufal jsem, že by tam nechali diamanty, ale je to jen dynamit. Aspoň jsi na to nešáhl. Chceš ji zneškodnit ?</p>'
+        text: '<p><strong class="pablo">Pablo:</strong> You found something there ? Oh. shoot I hoped they would left some diamonds but it is just a bomb. It is good you did not touch it. Do you want to defuse it ?</p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Něcos našel ? Oh krci, doufal jsem, že by tam nechali diamanty, ale je to jen bomba. Aspoň jsi na to nešáhl. Chceš ji zneškodnit ?</p>'
         , options: [
 
             {
@@ -507,8 +507,8 @@ const texts = [
 
     {
         id: 17,
-        text: '<p><strong class="narrator">Narrator:</strong> YOU LOST. Pablo was not happy you bothered him. He won´t help you.</p>',
-        textcs: '<p><strong class="narrator">Vypravěč:</strong> PROHRÁLS.Pablo nebyl rád, žes ho otravoval. Ten ti nepomůže. </p>'
+        text: '<p><strong class="narrator">Narrator:</strong> YOU LOST. Pablo was not happy you bothered him. He won&#39;t help you.</p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> PROHRÁLS.Pablo nebyl rád, žes ho otravoval. Ten ti  teď nepomůže a ty nemáš, co jiného dělat. </p>'
         , options: []
     },
 
@@ -521,7 +521,7 @@ const texts = [
 
     {
         id: 19,
-        text: '<p><strong class="pablo">Pablo:</strong> Okay here is how: Orange,White,Pink. Good luck !</p>',
+        text: '<p><strong class="pablo">Pablo:</strong> Okay here is how: orange,white,pink. Good luck !</p>',
         textcs: '<p><strong class="pablo">Pablo:</strong> Dobře tady je návod: Oranžová, bílá, růžová. Hodně štěstí ! </p>'
         , options: []
     },
@@ -608,8 +608,8 @@ const texts = [
     },
     {
         id: 24,
-        text: '<p><strong class="narrator">Narrator:</strong> YOU WON. You defused the bomb and now you are safe and ready for more future adventures. ! </p>',
-        textcs: '<p><strong class="narrator">Vypravěč:</strong> VYHRÁVÁŠ. Zneškodnil jsi bombu a teď už jsi v bezpečí a připraven pro další budoucí dobrodružství. ! </p>'
+        text: '<p><strong class="narrator">Narrator:</strong> YOU WON. You defused the bomb and now you are safe and ready for more future adventures ! </p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> VYHRÁVÁŠ. Zneškodnil jsi bombu a teď už jsi v bezpečí a připraven pro další budoucí dobrodružství ! </p>'
         , options: [
         ]
     },
@@ -654,7 +654,7 @@ const texts = [
     },
     {
         id: 28,
-        text: '<p><strong class="narrator">Narrator:</strong> YOU WON? You end up alone and with no heroic arch. </p>',
+        text: '<p><strong class="narrator">Narrator:</strong> YOU WON? You end up alone and with no heroic arc. </p>',
         textcs: '<p><strong class="narrator">Vypravěč:</strong> VYHRÁVÁŠ? Skončils sám a se žádným hrdinským skutkem. </p>'
         , options: [
         ]
@@ -672,7 +672,7 @@ const texts = [
     {
         id: 30,
         text: '<p><strong class="narrator">Narrator:</strong> YOU DIED. When you try not to defuse bomb you accidentally blow yourself up.</p>',
-        textcs: '<p><strong class="narrator">Vypravěč:</strong> ZEMŘELS. Když se pokoušel o to bombu nezneškodnit omylel ses vyhodil do vzduchu.</p>'
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> ZEMŘELS. Když se pokoušel o to bombu nezneškodnit omylem ses vyhodil do vzduchu.</p>'
         , options: [
         ]
     },
@@ -824,7 +824,7 @@ function gameover(narration) {
     canvas.style.display = "none";
     controls.style.display = "none";
     state.includes('win') ? document.body.style.backgroundImage = "url(./img/win.jpg)" : document.body.style.backgroundImage = "url(./img/lose.jpg)";
-    
+
 }
 
 

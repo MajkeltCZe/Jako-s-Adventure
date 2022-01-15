@@ -125,7 +125,8 @@ color: rgb(7, 6, 6);
 @media only screen and (max-width: 600px) {
 body {
 
-  background: url("../img/bgmobile.png") no-repeat center center fixed;
+background-size: cover;
+
 }
 
 #menu {
@@ -140,7 +141,7 @@ width: 470px;
 }
 
 .btn {
-  width: 100px;
+  width: 150px;
   margin-left: 3% !important;
 
 font-size: 25px;
