@@ -210,7 +210,9 @@ width: 470px;
 font-size: 25px;
 }
 
-
+#options {
+  margin-left: 0px !important;
+}
 
 #right,#left {
   width: 170px;
@@ -248,3 +250,33 @@ font-size: 25px;
 
 
 }
+
+@media only screen and (max-width: 380px) {
+
+  canvas {
+    height: 180px;
+    width: 330px;
+    
+    }
+
+
+    #right,#left {
+      width: 120px;
+      margin-left: 35px !important;
+      
+      }
+
+      #options {
+        margin-left: 0px !important;
+      }
+
+     #options > .btn {
+      width: 120px;
+      margin-left: 35px !important;
+      font-size: 25px;
+      }
+
+
+}
+
+
