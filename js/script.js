@@ -32,12 +32,12 @@ class char {
     }
 
     animace(speedy, time) {
-        controls.style.display = "none";
         active = true;
         let now = new Date().getTime();
         let interval = setInterval(() => {
             animate(this.src, this.x, this.y, this.s, this.e, this.row);
             this.x += this.move;
+            controls.style.display = "none";
             playable = false;
             if (new Date().getTime() - now > time) {
                 clearInterval(interval);
