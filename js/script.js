@@ -21,25 +21,24 @@ for (let i = 0; i < 6; i++) {
 }
 
 class char {
-    constructor(img, xPos, yPos, start, end, row) {
+    constructor(img, xPos, yPos, start, end, row,move) {
         this.x = xPos;
         this.y = yPos;
         this.src = img;
         this.s = start;
         this.e = end;
         this.row = row;
+    this.move = move;
     }
 
     animace(speedy, time) {
         controls.style.display = "none";
         active = true;
-        playable = false;
         let now = new Date().getTime();
         let interval = setInterval(() => {
-            console.log(active);
             animate(this.src, this.x, this.y, this.s, this.e, this.row);
-            speedy = speedy;
-
+            this.x += this.move;
+            playable = false;
             if (new Date().getTime() - now > time) {
                 clearInterval(interval);
                 active = false;
@@ -90,7 +89,7 @@ left.addEventListener('pointerup', () => {
 const Jako = {
     x: 20,
     y: 280,
-    speed: 5,
+    speed: 15,
     img: 5,
     keyboardPressed: function (e) {
         if ((e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 16)) {
@@ -180,30 +179,12 @@ function Narration(textIndex) {
 function selectOption(option) {
     const nextTextNodeId = option.nextText;
     state.push(state, option.state);
-    if (option.nextText == -1) {
-        if (state.includes('colordead')) {
-            gameover(25);
-        }
-        else if (state.includes('win')) {
-            gameover(24);
-        }
-        else {
-            gameover(9);
-        }
-    }
-    else if (option.nextText == -2) {
-     state.includes("win") ?  gameover(27) : gameover(28);
-        
-    }
-    else if (option.nextText == -3)  gameover(30);
-    
-    else {
-        Narration(nextTextNodeId);
-        playable = true;
-    }
     Storytelling();
+if (option.nextText != -1) {
+    Narration(nextTextNodeId);
+    playable = true;
 }
-
+}
 //all texts 
 //------------------------------------------------//
 const texts = [
@@ -286,7 +267,8 @@ const texts = [
             {
                 text: 'Do nothing',
                 textcs: 'Nic nedělat',
-                nextText: -1,
+               nextText: -1,
+                state: "killed"
             }
         ]
     },
@@ -371,7 +353,7 @@ const texts = [
     {
         id: 16,
         text: '<p><strong class="pablo">Pablo:</strong> You found something there ? Oh. shoot I hoped they would left some diamonds but it is just a bomb. It is good you did not touch it. Do you want to defuse it ?</p>',
-        textcs: '<p><strong class="pablo">Pablo:</strong> Něcos našel ? Oh krci, doufal jsem, že by tam nechali diamanty, ale je to jen bomba. Aspoň jsi na to nešáhl. Chceš ji zneškodnit ?</p>'
+        textcs: '<p><strong class="pablo">Pablo:</strong> Něcos našel ? Oh kruci, doufal jsem, že by tam nechali diamanty, ale je to jen bomba. Aspoň jsi na to nesáhl. Chceš ji zneškodnit ?</p>'
         , options: [
             {
                 text: 'I can try',
@@ -388,8 +370,8 @@ const texts = [
     },
     {
         id: 17,
-        text: '<p><strong class="narrator">Narrator:</strong> YOU LOST. Pablo was not happy you bothered him. He won&#39;t help you.</p>',
-        textcs: '<p><strong class="narrator">Vypravěč:</strong> PROHRÁLS.Pablo nebyl rád, žes ho otravoval. Ten ti  teď nepomůže a ty nemáš, co jiného dělat. </p>'
+        text: '<p><strong class="narrator">Pablo:</strong> I am not helping you....</p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> Moji pomoc nečekej... </p>'
         , options: []
     },
     {
@@ -417,7 +399,8 @@ const texts = [
             {
                 text: 'No',
                 textcs: 'Ne',
-                nextText: -3,
+                nextText: -1,
+            state: "mindblowing"
             }
         ]
     },
@@ -433,7 +416,7 @@ const texts = [
             },
             {
                 text: 'Purple',
-                textcs: 'fialová',
+                textcs: 'Fialová',
                 nextText: -1,
                 state: "colordead"
             }
@@ -498,13 +481,13 @@ const texts = [
             {
                 text: 'Yes',
                 textcs: 'Ano',
-                nextText: -2,
-                state: "win"
+                nextText: -1,
+                state: "friendsforlife"
             },
             {
                 text: 'Nah',
                 textcs: 'Ne',
-                nextText: -2,
+                nextText: -1,
                 state: "neutral"
             }
         ]
@@ -525,10 +508,22 @@ const texts = [
     },
     {
         id: 29,
-        text: '<p><strong class="narrator">Narrator:</strong> YOU WON? Maybe you saved yourself from the bomb. But you destroyed everything else. </p>',
-        textcs: '<p><strong class="narrator">Vypravěč:</strong> VYHRÁVÁŠ? Sebe si sice zachránil před bombou, ale všechno ostatní jsi zničil.</p>'
+        text: '<p><strong class="pablo">Pablo:</strong> Are you okay ? We should check it out. </p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Jsi v pořádku ? Mohli bychom se tam podívat, jak to tam vypadá.</p>'
         , options: [
-        ]
+                {
+                    text: 'You should go',
+                    textcs: 'Měl bys jít ty',
+                    nextText: 32,
+                    state: "coward"
+                },
+                {
+                    text: 'I will go',
+                    textcs: 'Já půjdu',
+                    nextText: 33,
+               state: "brave"
+                }
+            ]
     },
     {
         id: 30,
@@ -537,18 +532,104 @@ const texts = [
         , options: [
         ]
     },
-]
+
+    {
+        id: 31,
+        text: '<p><strong class="pablo">Pablo:</strong> Karma... </p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Karma..</p>'
+        , options: [
+        ]
+    },
+{
+    id: 32,
+    text: '<p><strong class="pablo">Pablo:</strong> Okay, I will go. </p>',
+    textcs: '<p><strong class="pablo">Pablo:</strong> Dobrá, tak já tedy půjdu.</p>'
+    , options: [
+        ]
+    },
+   {
+    id: 33,
+    text: '<p><strong class="pablo">Pablo:</strong> Good luck, my friend. </p>',
+    textcs: '<p><strong class="pablo">Pablo:</strong> Hodně štěstí, můj příteli.</p>'
+    , options: [
+        ]
+    },
+
+    {
+        id: 34,
+        text: '<p><strong class="narrator">Narrator:</strong> Go check on Pablo.</p>',
+        textcs: '<p><strong class="narrator">Pablo:</strong> Běž ho tam radši zkontrolovat. </p>'
+        , options: [
+        ]
+        },
+{
+        id: 35,
+        text: '<p><strong class="pablo">Pablo:</strong>. Help me ! Something fell on me and I cannot move.</p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Pomoc mi ! Něco na mě spadlo a neumím se hýbat. </p>'
+        , options: [
+            {
+                text: 'Help Pablo',
+                textcs: 'Pomoc Pablovi',
+                nextText: -1,
+                state: "helper"
+            },
+            {
+                text: 'Leave him there',
+                textcs: 'Nechat ho tam',
+                nextText: -1,
+           state: "loner"
+            }
+        
+        ]
+        },
+        {
+            id: 36,
+            text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. You helped Pablo to safety. He is greatful.</p>',
+            textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Pomohl jsi Pablovi do bezpečí. Je ti za to vděčný.</p>'
+            , options: [
+            ]
+        },
+        {
+            id: 37,
+            text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. You left Pablo for dead, but you survived.</p>',
+            textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Nechal jsi Pabla na pospas, ale přežil jsi.</p>'
+            , options: [
+            ]
+        },
+
+        {
+            id: 38,
+            text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. Something hit your head but Pablo helped you to safety.</p>',
+            textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Sice tě něco trefilo do hlavy, ale Pablo ti pomohl.</p>'
+            , options: [
+            ]
+        },
+        {
+            id: 39,
+            text: '<p><strong class="narrator">Narrator:</strong> YOU DIED. Something hit your head and no one come to rescue you.</p>',
+            textcs: '<p><strong class="narrator">Vypravěč:</strong> ZEMŘELS. Něco tě trefilo do hlavy a nikdo ti nepřišel na pomoc.</p>'
+            , options: [
+            ]
+        },
+     {
+            id: 40,
+            text: '<p><strong class="narrator">Narrator:</strong> Go back and have a look what happend there.</p>',
+            textcs: '<p><strong class="narrator">Pablo:</strong> Běž to tam radši zkontrolovat. </p>'
+            , options: [
+            ]
+            },
+    ]
 //------------------------------------------------//
 
 //changes of story
 //------------------------------------------------//
 function Storytelling() {
-    if (bg == 0 && story == 1 && Jako.x >= 400) {
+    if (bg == 0 && story == 1 && Jako.x >= 450) {
         story++;
-        Narration(4);
+    Narration(4);
     }
-    if (bg == 1) {
-        character = new char(4, 450, 280, 0, 0, 0);
+    if (bg == 1 && !state.includes('coward')) {
+     character = new char(4, 450, 280, 0, 0, 0,0);
     }
 
     if (bg == 1 && story == 2 && Jako.x - character.x >= -150) {
@@ -556,7 +637,7 @@ function Storytelling() {
         Narration(7);
     }
     if (state.includes('waving') && story == 3) {
-        cutscene = new char(Jako.img, Jako.x, Jako.y, 1, 5, 4);
+        cutscene = new char(Jako.img, Jako.x, Jako.y, 1, 5, 4,0);
         cutscene.animace(100, 2400);
     }
     if (story == 4) {
@@ -564,12 +645,13 @@ function Storytelling() {
         story++;
     }
     if (bg == 2) {
-        character = new char(4, 850, 280, 0, 0, 1);
+        character = new char(4, 850, 280, 0, 0, 2,0);
     }
     if (story == 5 && bg == 2 && Jako.x >= 650) {
         Narration(13);
         story++;
     }
+    //touching bomb
     if (story == 6 && bg == 2 && state.includes('boom')) {
         left.innerHTML = 'shift';
         timing = setTimeout(() => {
@@ -579,18 +661,65 @@ function Storytelling() {
     }
     if (story == 7 && bg == 1 && state.includes('boom')) {
         clearTimeout(timing);
-        gameover(29);
-    }
-    if (story == 6 && bg == 1 && Jako.x <= 650) {
-        state.includes('friends') ? Narration(16) : gameover(17);
         story++;
     }
-    if (story == 7 && state.includes('defuser') && bg == 2 & Jako.x >= 650) {
+    if (story == 8 && Jako.x <= 650 && state.includes('boom')) {
+ if  (state.includes('friends')) Narration(29);
+story++;
+    }
+  if (story == 9 && !state.includes('friends') && Jako.x <=850) {
+state.push('explorer');
+    Narration(40);
+  }
+    if (story == 9 && (state.includes('brave') || state.includes('explorer')) && (bg == 2 ||  bg == 3)) {
+    bg = 3;
+  }
+  
+    if (story == 9 && state.includes('coward')) {
+        character = new char(Jako.img,Jako.x,Jako.y,0,0,4,0);
+        cutscene = new char(4, 450, 275, 0, 4, 1,5);
+        cutscene.animace(30, 3950);
+    }
+
+    if (story == 10 && state.includes('coward') && bg == 1) {
+        character = new char(4,0,0,0,0,4,0);
+Narration(34);
+story++;
+    }
+
+    if (story == 11 && state.includes('coward') && (bg == 2 || bg == 3)) {
+      bg = 3;
+      character = new char (4,220,280,0,0,3,0);
+        Narration(35);
+        story++;
+    }
+//-------------
+    if (story == 6 && bg == 1 && Jako.x <= 650) {
+        state.includes('friends') ? Narration(16) : Narration(17);
+        story++;
+    }
+
+
+    if (story == 7 && bg == 2 & Jako.x >= 650) {
         Narration(20);
         story++;
     }
+
+// most endings
+if (state.includes('killed')) gameover(9,2);
+if (state.includes('win')) gameover(24,1);
+if (state.includes('colordead')) gameover(25,2);
+if (state.includes('friendsforlife'))  gameover(27,1);
+if (state.includes('neutral')) gameover(28,3);
+if  (state.includes('mindblowing')) gameover(30,2);
+if (state.includes('helper')) gameover(36,3);
+if (state.includes('loner')) gameover(37,3);
+if (story == 9 && (state.includes('brave') || state.includes('explorer')) &&  bg == 3 && Jako.x >= 400)   
+state.includes('friends') ? gameover(38,1) : gameover(39,2);
+  
 }
 //------------------------------------------------//
+
 
 //function for animating frames and drawing them on canvas
 //------------------------------------------------//
@@ -603,18 +732,15 @@ function animate(i, xPos, yPos, startIndex, endIndex, row) {
     if (frameIndex > endIndex) {
         frameIndex = startIndex;
     }
-
     ctx.clearRect(xPos, yPos, frameWidth, frameHeight);
     ctx.drawImage(img[bg], 0, 0);
     ctx.drawImage(img[i], frameIndex * frameWidth, row * frameHeight, frameWidth, frameHeight, xPos, yPos, frameWidth, frameHeight);
 
     // standing character
-    if (bg == 1 || bg == 2) {
+    if (bg != 0) {
         ctx.drawImage(img[character.src], 0, character.row * frameHeight, frameWidth, frameHeight, character.x, character.y, frameWidth, frameHeight);
     }
-    if (state.includes('boom') && story == 6 && bg == 2) {
-        ctx.drawImage(img[cutscene.src], frameIndex * frameWidth, cutscene.row * frameHeight, frameWidth, frameHeight, cutscene.x, cutscene.y, frameWidth, frameHeight);
-    }
+   
 }
 //------------------------------------------------//
 
@@ -632,13 +758,22 @@ function ChangeBackground() {
 }
 //the end of the game 
 //------------------------------------------------//
-function gameover(narration) {
+function gameover(narration,picture) {
     Narration(narration);
     menu.style.display = "none";
     canvas.style.display = "none";
     controls.style.display = "none";
-    state.includes('win') ? document.body.style.backgroundImage = "url(./img/win.jpg)" : document.body.style.backgroundImage = "url(./img/lose.jpg)";
-}
+   
+    if (picture == 1) {
+    document.body.style.backgroundImage = "url(./img/background1.jpg)" 
+    }
+    if (picture == 2) {
+        document.body.style.backgroundImage = "url(./img/background2.jpg)" 
+        }
+       else {
+            document.body.style.backgroundImage = "url(./img/background3.jpg)" 
+            }
+    }
 //------------------------------------------------//
 
 //set language
