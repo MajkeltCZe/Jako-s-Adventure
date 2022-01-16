@@ -63,11 +63,6 @@ right.addEventListener('pointerdown', () => {
 });
 
 left.addEventListener('pointerdown', () => {
-    moving = setInterval(() => {
-        moveLeft();
-        ChangeBackground();
-        Storytelling();
-    }, 30);
     if (state.includes('boom')) {
         moving = setInterval(() => {
             shift();
@@ -75,6 +70,15 @@ left.addEventListener('pointerdown', () => {
             Storytelling();
         }, 30);
     }
+else {
+    moving = setInterval(() => {
+        moveLeft();
+        ChangeBackground();
+        Storytelling();
+    }, 30);
+
+}
+
 });
 
 right.addEventListener('pointerup', () => {
@@ -369,8 +373,8 @@ const texts = [
     },
     {
         id: 17,
-        text: '<p><strong class="narrator">Pablo:</strong> I am not helping you....</p>',
-        textcs: '<p><strong class="narrator">Vypravěč:</strong> Moji pomoc nečekej... </p>'
+        text: '<p><strong class="pablo">Pablo:</strong> I am not helping you....</p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Moji pomoc nečekej... </p>'
         , options: []
     },
     {
@@ -557,7 +561,7 @@ const texts = [
     {
         id: 34,
         text: '<p><strong class="narrator">Narrator:</strong> Go check on Pablo.</p>',
-        textcs: '<p><strong class="narrator">Pablo:</strong> Běž ho tam radši zkontrolovat. </p>'
+        textcs: '<p><strong class="narrator">Narrator:</strong> Běž ho tam radši zkontrolovat. </p>'
         , options: [
         ]
     },
@@ -613,7 +617,7 @@ const texts = [
     {
         id: 40,
         text: '<p><strong class="narrator">Narrator:</strong> Go back and have a look what happend there.</p>',
-        textcs: '<p><strong class="narrator">Pablo:</strong> Běž to tam radši zkontrolovat. </p>'
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> Běž to tam radši zkontrolovat. </p>'
         , options: [
         ]
     },
