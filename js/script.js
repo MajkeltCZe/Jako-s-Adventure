@@ -21,14 +21,14 @@ for (let i = 0; i < 6; i++) {
 }
 
 class char {
-    constructor(img, xPos, yPos, start, end, row,move) {
+    constructor(img, xPos, yPos, start, end, row, move) {
         this.x = xPos;
         this.y = yPos;
         this.src = img;
         this.s = start;
         this.e = end;
         this.row = row;
-    this.move = move;
+        this.move = move;
     }
 
     animace(speedy, time) {
@@ -89,7 +89,7 @@ left.addEventListener('pointerup', () => {
 const Jako = {
     x: 20,
     y: 280,
-    speed: 15,
+    speed: 5,
     img: 5,
     keyboardPressed: function (e) {
         if ((e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 16)) {
@@ -100,8 +100,8 @@ const Jako = {
     },
 
     keyboard: function (e) {
-        if (e.keyCode == 39 && playable == true)  moveRight();
-        if (e.keyCode == 37 && playable == true)   moveLeft();
+        if (e.keyCode == 39 && playable == true) moveRight();
+        if (e.keyCode == 37 && playable == true) moveLeft();
         if (e.keyCode == 16 && playable == true) shift();
         if (active == false) {
             ChangeBackground();
@@ -180,10 +180,10 @@ function selectOption(option) {
     const nextTextNodeId = option.nextText;
     state.push(state, option.state);
     Storytelling();
-if (option.nextText != -1) {
-    Narration(nextTextNodeId);
-    playable = true;
-}
+    if (option.nextText != -1) {
+        Narration(nextTextNodeId);
+        playable = true;
+    }
 }
 //all texts 
 //------------------------------------------------//
@@ -197,13 +197,11 @@ const texts = [
                 text: 'Hi',
                 textcs: 'Ahoj',
                 nextText: 2,
-                state: "manners"
             },
             {
                 text: 'Ignore',
                 textcs: 'Ignorovat',
                 nextText: 3,
-                state: "ignore"
             }
         ]
     },
@@ -232,7 +230,6 @@ const texts = [
                 text: 'Yes',
                 textcs: 'Ano',
                 nextText: 5,
-                state: "backstory"
             },
             {
                 text: 'What, no.',
@@ -267,7 +264,7 @@ const texts = [
             {
                 text: 'Do nothing',
                 textcs: 'Nic nedělat',
-               nextText: -1,
+                nextText: -1,
                 state: "killed"
             }
         ]
@@ -352,7 +349,7 @@ const texts = [
     },
     {
         id: 16,
-        text: '<p><strong class="pablo">Pablo:</strong> You found something there ? Oh. shoot I hoped they would left some diamonds but it is just a bomb. It is good you did not touch it. Do you want to defuse it ?</p>',
+        text: '<p><strong class="pablo">Pablo:</strong> You found something there ? Oh shoot, I hoped they would left some diamonds but it is just a bomb. It is good you did not touch it. Do you want to defuse it ?</p>',
         textcs: '<p><strong class="pablo">Pablo:</strong> Něcos našel ? Oh kruci, doufal jsem, že by tam nechali diamanty, ale je to jen bomba. Aspoň jsi na to nesáhl. Chceš ji zneškodnit ?</p>'
         , options: [
             {
@@ -400,7 +397,7 @@ const texts = [
                 text: 'No',
                 textcs: 'Ne',
                 nextText: -1,
-            state: "mindblowing"
+                state: "mindblowing"
             }
         ]
     },
@@ -511,19 +508,19 @@ const texts = [
         text: '<p><strong class="pablo">Pablo:</strong> Are you okay ? We should check it out. </p>',
         textcs: '<p><strong class="pablo">Pablo:</strong> Jsi v pořádku ? Mohli bychom se tam podívat, jak to tam vypadá.</p>'
         , options: [
-                {
-                    text: 'You should go',
-                    textcs: 'Měl bys jít ty',
-                    nextText: 32,
-                    state: "coward"
-                },
-                {
-                    text: 'I will go',
-                    textcs: 'Já půjdu',
-                    nextText: 33,
-               state: "brave"
-                }
-            ]
+            {
+                text: 'You should go',
+                textcs: 'Měl bys jít ty',
+                nextText: 32,
+                state: "coward"
+            },
+            {
+                text: 'I will go',
+                textcs: 'Já půjdu',
+                nextText: 33,
+                state: "brave"
+            }
+        ]
     },
     {
         id: 30,
@@ -540,18 +537,18 @@ const texts = [
         , options: [
         ]
     },
-{
-    id: 32,
-    text: '<p><strong class="pablo">Pablo:</strong> Okay, I will go. </p>',
-    textcs: '<p><strong class="pablo">Pablo:</strong> Dobrá, tak já tedy půjdu.</p>'
-    , options: [
+    {
+        id: 32,
+        text: '<p><strong class="pablo">Pablo:</strong> Okay, I will go. </p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Dobrá, tak já tedy půjdu.</p>'
+        , options: [
         ]
     },
-   {
-    id: 33,
-    text: '<p><strong class="pablo">Pablo:</strong> Good luck, my friend. </p>',
-    textcs: '<p><strong class="pablo">Pablo:</strong> Hodně štěstí, můj příteli.</p>'
-    , options: [
+    {
+        id: 33,
+        text: '<p><strong class="pablo">Pablo:</strong> Good luck, my friend. </p>',
+        textcs: '<p><strong class="pablo">Pablo:</strong> Hodně štěstí, můj příteli.</p>'
+        , options: [
         ]
     },
 
@@ -561,8 +558,8 @@ const texts = [
         textcs: '<p><strong class="narrator">Pablo:</strong> Běž ho tam radši zkontrolovat. </p>'
         , options: [
         ]
-        },
-{
+    },
+    {
         id: 35,
         text: '<p><strong class="pablo">Pablo:</strong>. Help me ! Something fell on me and I cannot move.</p>',
         textcs: '<p><strong class="pablo">Pablo:</strong> Pomoc mi ! Něco na mě spadlo a neumím se hýbat. </p>'
@@ -577,59 +574,60 @@ const texts = [
                 text: 'Leave him there',
                 textcs: 'Nechat ho tam',
                 nextText: -1,
-           state: "loner"
+                state: "loner"
             }
-        
-        ]
-        },
-        {
-            id: 36,
-            text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. You helped Pablo to safety. He is greatful.</p>',
-            textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Pomohl jsi Pablovi do bezpečí. Je ti za to vděčný.</p>'
-            , options: [
-            ]
-        },
-        {
-            id: 37,
-            text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. You left Pablo for dead, but you survived.</p>',
-            textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Nechal jsi Pabla na pospas, ale přežil jsi.</p>'
-            , options: [
-            ]
-        },
 
-        {
-            id: 38,
-            text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. Something hit your head but Pablo helped you to safety.</p>',
-            textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Sice tě něco trefilo do hlavy, ale Pablo ti pomohl.</p>'
-            , options: [
-            ]
-        },
-        {
-            id: 39,
-            text: '<p><strong class="narrator">Narrator:</strong> YOU DIED. Something hit your head and no one come to rescue you.</p>',
-            textcs: '<p><strong class="narrator">Vypravěč:</strong> ZEMŘELS. Něco tě trefilo do hlavy a nikdo ti nepřišel na pomoc.</p>'
-            , options: [
-            ]
-        },
-     {
-            id: 40,
-            text: '<p><strong class="narrator">Narrator:</strong> Go back and have a look what happend there.</p>',
-            textcs: '<p><strong class="narrator">Pablo:</strong> Běž to tam radši zkontrolovat. </p>'
-            , options: [
-            ]
-            },
-    ]
+        ]
+    },
+    {
+        id: 36,
+        text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. You helped Pablo to safety. He is greatful.</p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Pomohl jsi Pablovi do bezpečí. Je ti za to vděčný.</p>'
+        , options: [
+        ]
+    },
+    {
+        id: 37,
+        text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. You left Pablo for dead, but you survived.</p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Nechal jsi Pabla na pospas, ale přežil jsi.</p>'
+        , options: [
+        ]
+    },
+
+    {
+        id: 38,
+        text: '<p><strong class="narrator">Narrator:</strong> YOU SURVIVED. Something hit your head but Pablo helped you to safety.</p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> PŘEŽILS. Sice tě něco trefilo do hlavy, ale Pablo ti pomohl.</p>'
+        , options: [
+        ]
+    },
+    {
+        id: 39,
+        text: '<p><strong class="narrator">Narrator:</strong> YOU DIED. Something hit your head and no one come to rescue you.</p>',
+        textcs: '<p><strong class="narrator">Vypravěč:</strong> ZEMŘELS. Něco tě trefilo do hlavy a nikdo ti nepřišel na pomoc.</p>'
+        , options: [
+        ]
+    },
+    {
+        id: 40,
+        text: '<p><strong class="narrator">Narrator:</strong> Go back and have a look what happend there.</p>',
+        textcs: '<p><strong class="narrator">Pablo:</strong> Běž to tam radši zkontrolovat. </p>'
+        , options: [
+        ]
+    },
+]
 //------------------------------------------------//
 
 //changes of story
 //------------------------------------------------//
 function Storytelling() {
+    console.log(story);
     if (bg == 0 && story == 1 && Jako.x >= 450) {
         story++;
-    Narration(4);
+        Narration(4);
     }
     if (bg == 1 && !state.includes('coward')) {
-     character = new char(4, 450, 280, 0, 0, 0,0);
+        character = new char(4, 450, 280, 0, 0, 0, 0);
     }
 
     if (bg == 1 && story == 2 && Jako.x - character.x >= -150) {
@@ -637,7 +635,7 @@ function Storytelling() {
         Narration(7);
     }
     if (state.includes('waving') && story == 3) {
-        cutscene = new char(Jako.img, Jako.x, Jako.y, 1, 5, 4,0);
+        cutscene = new char(Jako.img, Jako.x, Jako.y, 1, 5, 4, 0);
         cutscene.animace(100, 2400);
     }
     if (story == 4) {
@@ -645,7 +643,7 @@ function Storytelling() {
         story++;
     }
     if (bg == 2) {
-        character = new char(4, 850, 280, 0, 0, 2,0);
+        character = new char(4, 850, 280, 0, 0, 2, 0);
     }
     if (story == 5 && bg == 2 && Jako.x >= 650) {
         Narration(13);
@@ -653,47 +651,58 @@ function Storytelling() {
     }
     //touching bomb
     if (story == 6 && bg == 2 && state.includes('boom')) {
+        
+        story++;
         left.innerHTML = 'shift';
         timing = setTimeout(() => {
             gameover(18);
         }, 5000);
-        story++
+       
+        
     }
-    if (story == 7 && bg == 1 && state.includes('boom')) {
+    if (story == 8 && bg == 1 && state.includes('boom')) {
+        left.innerHTML = '<i class="fa fa-arrow-left" aria-hidden="true">';
         clearTimeout(timing);
-        story++;
+        
     }
-    if (story == 8 && Jako.x <= 650 && state.includes('boom')) {
- if  (state.includes('friends')) Narration(29);
-story++;
+    if (story == 8 && state.includes('boom') && bg == 1) {
+        if (state.includes('friends') && Jako.x <= 650) {
+            Narration(29);
+            story++;
+        }
+        if (Jako.x <= 800 && !state.includes('friends')) {
+            Narration(31);
+        }
+       
+        if (Jako.x <= 400 && !state.includes('friends')) {
+            state.push('explorer');
+            Narration(40);
+            story++;
+        }
     }
-  if (story == 9 && !state.includes('friends') && Jako.x <=850) {
-state.push('explorer');
-    Narration(40);
-  }
-    if (story == 9 && (state.includes('brave') || state.includes('explorer')) && (bg == 2 ||  bg == 3)) {
-    bg = 3;
-  }
-  
+    if (story == 9 && (state.includes('brave') || state.includes('explorer')) && (bg == 2 || bg == 3)) {
+        bg = 3;
+    }
+
     if (story == 9 && state.includes('coward')) {
-        character = new char(Jako.img,Jako.x,Jako.y,0,0,4,0);
-        cutscene = new char(4, 450, 275, 0, 4, 1,5);
+        character = new char(Jako.img, Jako.x, Jako.y, 0, 0, 4, 0);
+        cutscene = new char(4, 450, 275, 0, 4, 1, 5);
         cutscene.animace(30, 3950);
     }
 
     if (story == 10 && state.includes('coward') && bg == 1) {
-        character = new char(4,0,0,0,0,4,0);
-Narration(34);
-story++;
+        character = new char(4, 0, 0, 0, 0, 4, 0);
+        Narration(34);
+        story++;
     }
 
     if (story == 11 && state.includes('coward') && (bg == 2 || bg == 3)) {
-      bg = 3;
-      character = new char (4,220,280,0,0,3,0);
+        bg = 3;
+        character = new char(4, 220, 280, 0, 0, 3, 0);
         Narration(35);
         story++;
     }
-//-------------
+    //-------------
     if (story == 6 && bg == 1 && Jako.x <= 650) {
         state.includes('friends') ? Narration(16) : Narration(17);
         story++;
@@ -705,18 +714,18 @@ story++;
         story++;
     }
 
-// most endings
-if (state.includes('killed')) gameover(9,2);
-if (state.includes('win')) gameover(24,1);
-if (state.includes('colordead')) gameover(25,2);
-if (state.includes('friendsforlife'))  gameover(27,1);
-if (state.includes('neutral')) gameover(28,3);
-if  (state.includes('mindblowing')) gameover(30,2);
-if (state.includes('helper')) gameover(36,3);
-if (state.includes('loner')) gameover(37,3);
-if (story == 9 && (state.includes('brave') || state.includes('explorer')) &&  bg == 3 && Jako.x >= 400)   
-state.includes('friends') ? gameover(38,1) : gameover(39,2);
-  
+    // most endings
+    if (state.includes('killed')) gameover(9, 2);
+    if (state.includes('win')) gameover(24, 1);
+    if (state.includes('colordead')) gameover(25, 2);
+    if (state.includes('friendsforlife')) gameover(27, 1);
+    if (state.includes('neutral')) gameover(28, 3);
+    if (state.includes('mindblowing')) gameover(30, 2);
+    if (state.includes('helper')) gameover(36, 3);
+    if (state.includes('loner')) gameover(37, 3);
+    if (story == 9 && (state.includes('brave') || state.includes('explorer')) && bg == 3 && Jako.x >= 400)
+        state.includes('friends') ? gameover(38, 1) : gameover(39, 2);
+
 }
 //------------------------------------------------//
 
@@ -740,7 +749,7 @@ function animate(i, xPos, yPos, startIndex, endIndex, row) {
     if (bg != 0) {
         ctx.drawImage(img[character.src], 0, character.row * frameHeight, frameWidth, frameHeight, character.x, character.y, frameWidth, frameHeight);
     }
-   
+
 }
 //------------------------------------------------//
 
@@ -758,22 +767,22 @@ function ChangeBackground() {
 }
 //the end of the game 
 //------------------------------------------------//
-function gameover(narration,picture) {
+function gameover(narration, picture) {
     Narration(narration);
     menu.style.display = "none";
     canvas.style.display = "none";
     controls.style.display = "none";
-   
+
     if (picture == 1) {
-    document.body.style.backgroundImage = "url(./img/background1.jpg)" 
+        document.body.style.backgroundImage = "url(./img/background1.jpg)"
     }
     if (picture == 2) {
-        document.body.style.backgroundImage = "url(./img/background2.jpg)" 
-        }
-       else {
-            document.body.style.backgroundImage = "url(./img/background3.jpg)" 
-            }
+        document.body.style.backgroundImage = "url(./img/background2.jpg)"
     }
+    else {
+        document.body.style.backgroundImage = "url(./img/background3.jpg)"
+    }
+}
 //------------------------------------------------//
 
 //set language
@@ -800,7 +809,6 @@ play.addEventListener('click', () => {
     document.body.style.backgroundImage = "url(./img/backgrounds.jpg)";
     animate(Jako.img, Jako.x, Jako.y, 0, 0, 4);
     Narration(1);
-
 });
 
 
