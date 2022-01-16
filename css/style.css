@@ -15,7 +15,7 @@ body {
   }
 
 #menu {
-margin-top: 40%;
+margin-top: 450px;
 
 
 }
@@ -103,39 +103,102 @@ color: rgb(7, 6, 6);
   
   }
 
-@media only screen and (max-width: 800px){
-  #controls {
 
-    display: none;
-    
+  @media only screen and (max-width: 1200px){
+   
+      canvas {
+        height: 420px;
+        width: 920px;
+        
+        }
+  
+  
     }
+
+    @media only screen and (max-width: 1200px){
+   
+      canvas {
+        height: 420px;
+        width: 900px;
+        
+        }
+  
+        .btn {
+          width: 200px;
+          margin-left: 3% !important;
+        
+        
+        }
+    }
+
+    @media only screen and (max-width: 1000px){
+   
+      canvas {
+        height: 420px;
+        width: 750px;
+        
+        }
+  
+      
+    }
+
+
+
+   @media only screen and (max-width: 800px){
 
     canvas {
       height: 420px;
-      width: 400px;
+      width: 700px;
       
       }
 
+      .btn {
+        width: 150px;
+        margin-left: 3% !important;
+      
+      
+      }
 
   }
 
+  @media only screen and (max-width: 700px){
+    #controls {
+  
+      display: none;
+      
+      }
+  
+      canvas {
+        height: 420px;
+        width: 500px;
+        
+        }
+  
+       
+    
+  
+    }
 
 
 
-@media only screen and (max-width: 600px) {
-body {
-
-background-size: cover;
-
-}
+ @media only screen and (max-width: 600px) {
+  body {
+    font-size:larger;
+  
+    background: url("../img/bgmobile.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+  
+  }
 
 #menu {
-margin-top: 60%;
-
-
+margin-top: 70%;
 }
+
+
 canvas {
-height: 380px;
+height: 370px;
 width: 470px;
 
 }
@@ -147,67 +210,41 @@ width: 470px;
 font-size: 25px;
 }
 
-#controls {
-display: block;
 
-}
 
 #right,#left {
-width: 100px;
-margin-left: 20px !important;
-
-}
-
-
-
+  width: 170px;
+  margin-left: 35px !important;
+  
+  }
 
 
 }
-
-
 
 @media only screen and (max-width: 480px) {
-  body {
-  
-    background: url("../img/bgmobile.png") no-repeat;
-  }
-  
-  #menu {
-  margin-top: 60%;
-  
-  
-  }
-  canvas {
-  height: 280px;
-  width: 350px;
-  
-  }
-  
-  .btn {
-    width: 100px;
-    margin-left: 3% !important;
-  
-  font-size: 25px;
-  }
-  
-  #controls {
-  display: block;
-  
-  }
-  
-  #right,#left {
-  width: 150px;
-  margin-left: 25px !important;
-  
-  }
-  
-  .play > h1 {
-font-size: 80px !important;
 
-}  
-.play > h1:hover {
-  font-size: 100px !important;
-  
-  }  
-  
-  }
+  canvas {
+    height: 270px;
+    width: 450px;
+    
+    }
+
+
+    #right,#left {
+      width: 170px;
+      margin-left: 35px !important;
+      
+      }
+
+      #options {
+        margin-left: 0px !important;
+      }
+
+     #options > .btn {
+      width: 170px;
+      margin-left: 35px !important;
+      font-size: 25px;
+      }
+
+
+}
