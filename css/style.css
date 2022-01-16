@@ -231,6 +231,12 @@ font-size: 25px;
     
     }
 
+    #narrator {
+
+      font-size: 20px;
+
+    }
+
 
     #right,#left {
       width: 170px;
@@ -245,7 +251,7 @@ font-size: 25px;
      #options > .btn {
       width: 170px;
       margin-left: 35px !important;
-      font-size: 25px;
+      font-size: 20px;
       }
 
 
@@ -273,7 +279,7 @@ font-size: 25px;
      #options > .btn {
       width: 120px;
       margin-left: 35px !important;
-      font-size: 25px;
+      
       }
 
 
