@@ -3,10 +3,12 @@ const ctx = canvas.getContext('2d');
 const narrator = document.getElementById('narrator');
 const options = document.getElementById('options');
 const play = document.getElementById('play');
+const footer = document.getElementById('footer');
 const language = document.getElementById('language');
 const menu = document.getElementById('menu');
 const right = document.getElementById('right');
 const left = document.getElementById('left');
+
 let media = window.matchMedia("(max-width: 600px)");
 const frameWidth = 108, frameHeight = 140;
 let frameIndex = 0, count = 0, bg = 0, l = 'en', moving = 0;
@@ -769,10 +771,10 @@ function ChangeBackground() {
 //------------------------------------------------//
 function gameover(narration, picture) {
     Narration(narration);
+    footer.style.display = "block";
     menu.style.display = "none";
     canvas.style.display = "none";
     controls.style.display = "none";
-
     if (picture == 1) {
         document.body.style.backgroundImage = "url(./img/background1.jpg)"
     }

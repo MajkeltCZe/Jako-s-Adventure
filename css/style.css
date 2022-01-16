@@ -67,7 +67,7 @@ font-size: 22px;
 
 .narrator {
 
-color: #880465;;
+color: #880465;
 
 }
 
@@ -102,6 +102,27 @@ color: rgb(7, 6, 6);
   display: none;
   
   }
+
+  footer {
+    color: rgb(0, 0, 0);
+    background-color: rgb(216, 213, 30);
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+footer > a {
+color: rgb(0, 0, 0);
+text-decoration: underline;
+}
+
+footer > a:hover {
+  color: #880465;;
+  text-decoration: underline;
+  }
+  
 
 
   @media only screen and (max-width: 1200px){
@@ -202,6 +223,7 @@ height: 370px;
 width: 470px;
 
 }
+
 
 .btn {
   width: 150px;
